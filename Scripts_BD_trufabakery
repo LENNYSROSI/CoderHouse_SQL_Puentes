@@ -1,1 +1,104 @@
+------  Creación del Esquema ------
+CREATE DATABASE TrufaBakery;
+USE TrufaBakery;
+
+------ Creación de la tabla Categoría ------
+CREATE TABLE Categoria (
+    Id_Categoria INT PRIMARY KEY,
+    Nombre_Categoria VARCHAR(255)
+);
+
+------ Creación de la tabla Productos ------
+CREATE TABLE Productos (
+    Id_Producto INT PRIMARY KEY,
+    Nombre_del_Producto VARCHAR(255),
+    Id_Categoria INT,
+    FOREIGN KEY (Id_Categoria) REFERENCES Categoria(Id_Categoria)
+);
+
+------ Creación de la tabla Clientes ------
+CREATE TABLE Clientes (
+    CI_RIF VARCHAR(20) PRIMARY KEY,
+    Nombres VARCHAR(255),
+    Apellidos VARCHAR(255),
+    Fecha_Nacimiento DATE,
+    Dirección VARCHAR(255),
+    Teléfono VARCHAR(20),
+    Sexo VARCHAR(10)
+);
+
+------ Creación de la tabla Lista_de_Precios ------
+CREATE TABLE Lista_de_Precios (
+    Id_Producto INT PRIMARY KEY,
+    Precio_Unitario DECIMAL(10,2),
+    Unidad_Medida VARCHAR(20),
+    IVA DECIMAL(10,2),
+    PVP DECIMAL(10,2),
+    FOREIGN KEY (Id_Producto) REFERENCES Productos(Id_Producto)
+);
+
+------ Creación de la tabla Roles ------
+CREATE TABLE Roles (
+    Id_Rol INT PRIMARY KEY,
+    Nombre_del_Rol VARCHAR(255)
+);
+
+------ Creación de la tabla Usuario ------
+CREATE TABLE Usuario (
+    Código_Usuario INT PRIMARY KEY,
+    CI_RIF_Usuario VARCHAR(20),
+    Nombres VARCHAR(255),
+    Apellidos VARCHAR(255),
+    Id_Rol INT,
+    FOREIGN KEY (Id_Rol) REFERENCES Roles(Id_Rol)
+);
+
+------ Creación de la tabla Ventas ------
+CREATE TABLE Ventas (
+    Id_Venta INT PRIMARY KEY,
+    Código_Venta VARCHAR(50) UNIQUE,
+    CI_RIF VARCHAR(20),
+    Fecha DATE,
+    Id_Categoria INT,
+    Id_Producto INT,
+    Cantidad INT,
+    Precio_Bs DECIMAL(10,2),
+    IVA_Bs DECIMAL(10,2),
+    Sub_Total_Bs DECIMAL(10,2),
+    Tasa DECIMAL(10,2),
+    IGTF DECIMAL(10,2),
+    Total_Gral_Bs DECIMAL(10,2),
+    Total_Gral DECIMAL(10,2),
+    Código_Usuario INT,
+    FOREIGN KEY (CI_RIF) REFERENCES Clientes(CI_RIF),
+    FOREIGN KEY (Id_Categoria) REFERENCES Categoria(Id_Categoria),
+    FOREIGN KEY (Id_Producto) REFERENCES Productos(Id_Producto),
+    FOREIGN KEY (Código_Usuario) REFERENCES Usuario(Código_Usuario)
+);
+
+------ Creación de la tabla Forma_de_Pago ------
+CREATE TABLE Forma_de_Pago (
+    Id_Forma_de_Pago INT PRIMARY KEY,
+    Método_de_Pago VARCHAR(255),
+    Nombre_del_Pago VARCHAR(255),
+    Código_Banco INT
+);
+
+------ Creación de la tabla Ventas_FormaPago ------
+CREATE TABLE Ventas_FormaPago (
+    Id_Venta INT,
+    Id_Forma_de_Pago INT,
+    Monto_Bs DECIMAL(10,2),
+    Monto DECIMAL(10,2),
+    Fecha_Pago DATE,
+    FOREIGN KEY (Id_Venta) REFERENCES Ventas(Id_Venta),
+    FOREIGN KEY (Id_Forma_de_Pago) REFERENCES Forma_de_Pago(Id_Forma_de_Pago)
+);
+
+------ Creación de la tabla Bancos ------
+CREATE TABLE Bancos (
+    Código_Banco INT PRIMARY KEY,
+    Nombre_del_Banco VARCHAR(255)
+);
+
 
