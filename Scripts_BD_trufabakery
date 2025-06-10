@@ -76,6 +76,13 @@ CREATE TABLE Ventas (
     FOREIGN KEY (Código_Usuario) REFERENCES Usuario(Código_Usuario)
 );
 
+
+------ Creación de la tabla Bancos ------
+CREATE TABLE Bancos (
+    Código_Banco INT PRIMARY KEY,
+    Nombre_del_Banco VARCHAR(255)
+);
+
 ------ Creación de la tabla Forma_de_Pago ------
 CREATE TABLE Forma_de_Pago (
     Id_Forma_de_Pago INT PRIMARY KEY,
@@ -95,10 +102,5 @@ CREATE TABLE Ventas_FormaPago (
     FOREIGN KEY (Id_Forma_de_Pago) REFERENCES Forma_de_Pago(Id_Forma_de_Pago)
 );
 
------- Creación de la tabla Bancos ------
-CREATE TABLE Bancos (
-    Código_Banco INT PRIMARY KEY,
-    Nombre_del_Banco VARCHAR(255)
-);
 
 
