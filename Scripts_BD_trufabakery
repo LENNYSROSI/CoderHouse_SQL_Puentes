@@ -18,7 +18,7 @@ CREATE TABLE Productos (
 
 ------ Creación de la tabla Clientes ------
 CREATE TABLE Clientes (
-    CI_RIF VARCHAR(20) PRIMARY KEY,
+    CI_RIF INT PRIMARY KEY,
     Nombres VARCHAR(255),
     Apellidos VARCHAR(255),
     Fecha_Nacimiento DATE,
@@ -46,7 +46,7 @@ CREATE TABLE Roles (
 ------ Creación de la tabla Usuario ------
 CREATE TABLE Usuario (
     Código_Usuario INT PRIMARY KEY,
-    CI_RIF_Usuario VARCHAR(20),
+    CI_RIF_Usuario INT,
     Nombres VARCHAR(255),
     Apellidos VARCHAR(255),
     Id_Rol INT,
@@ -57,7 +57,7 @@ CREATE TABLE Usuario (
 CREATE TABLE Ventas (
     Id_Venta INT PRIMARY KEY,
     Código_Venta VARCHAR(50) UNIQUE,
-    CI_RIF VARCHAR(20),
+    CI_RIF INT,
     Fecha DATE,
     Id_Categoria INT,
     Id_Producto INT,
