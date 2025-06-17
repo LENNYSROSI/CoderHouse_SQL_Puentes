@@ -56,7 +56,7 @@ CREATE TABLE Usuario (
 ------ Creación de la tabla Ventas ------
 CREATE TABLE Ventas (
     Id_Venta INT PRIMARY KEY,
-    Código_Venta VARCHAR(50) UNIQUE,
+    Código_Venta INT UNIQUE,
     CI_RIF INT,
     Fecha DATE,
     Id_Categoria INT,
