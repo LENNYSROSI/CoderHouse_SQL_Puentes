@@ -65,8 +65,8 @@ CREATE TABLE Ventas (
     Precio_Bs DECIMAL(10,2),
     IVA_Bs DECIMAL(10,2),
     Sub_Total_Bs DECIMAL(10,2),
-    Tasa DECIMAL(10,2),
-    IGTF DECIMAL(10,2),
+    Tasa DECIMAL(10,2) Null,
+    IGTF DECIMAL(10,2) Null,
     Total_Gral_Bs DECIMAL(10,2),
     Total_Gral DECIMAL(10,2),
     Código_Usuario INT,
@@ -88,15 +88,15 @@ CREATE TABLE Forma_de_Pago (
     Id_Forma_de_Pago INT PRIMARY KEY,
     Método_de_Pago VARCHAR(255),
     Nombre_del_Pago VARCHAR(255),
-    Código_Banco INT
+    Código_Banco INT Null
 );
 
 ------ Creación de la tabla Ventas_FormaPago ------
 CREATE TABLE Ventas_FormaPago (
     Id_Venta INT,
     Id_Forma_de_Pago INT,
-    Monto_Bs DECIMAL(10,2),
-    Monto_$ DECIMAL(10,2),
+    Monto_Bs DECIMAL(10,2) Null,
+    Monto_$ DECIMAL(10,2) Null,
     Fecha_Pago DATE,
     FOREIGN KEY (Id_Venta) REFERENCES Ventas(Id_Venta),
     FOREIGN KEY (Id_Forma_de_Pago) REFERENCES Forma_de_Pago(Id_Forma_de_Pago)
