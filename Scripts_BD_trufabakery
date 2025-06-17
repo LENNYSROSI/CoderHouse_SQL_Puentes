@@ -96,7 +96,7 @@ CREATE TABLE Ventas_FormaPago (
     Id_Venta INT,
     Id_Forma_de_Pago INT,
     Monto_Bs DECIMAL(10,2),
-    Monto DECIMAL(10,2),
+    Monto_$ DECIMAL(10,2),
     Fecha_Pago DATE,
     FOREIGN KEY (Id_Venta) REFERENCES Ventas(Id_Venta),
     FOREIGN KEY (Id_Forma_de_Pago) REFERENCES Forma_de_Pago(Id_Forma_de_Pago)
